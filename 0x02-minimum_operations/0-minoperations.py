@@ -25,4 +25,3 @@ def minOperations(n: int) -> int:
             n /= process
         process += 1
     return op
-
