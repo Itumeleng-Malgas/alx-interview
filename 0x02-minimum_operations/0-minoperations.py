@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """ Minimum Operations: Using dynamic programming approach """
 
-def minOperations(n):
+def minOperations(n: int) -> int:
     """
     We initialize a DP table dp with size n + 1, where dp[i] represents the
     minimum number of operations to achieve i characters.
