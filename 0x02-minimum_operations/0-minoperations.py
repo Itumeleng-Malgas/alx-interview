@@ -1,6 +1,5 @@
 #!/usr/bin/python3
-""" 0. Minimum Operations: Using dynamic programming approach """
-
+""" Minimum Operations: Using dynamic programming approach """
 
 def minOperations(n):
     """
@@ -17,7 +16,7 @@ def minOperations(n):
     update dp[i] with the minimum of its current value and the number of operations
     required to achieve i // j characters plus the number of pasting operations
     required to reach i characters.
-"""
+    """
 
     if n == 1:
         return 0
@@ -30,7 +29,8 @@ def minOperations(n):
         while j * j <= i:
             if i % j == 0:
                 dp[i] = min(dp[i], dp[j] + i // j)
-                dp[i] = min(dp[i], dp[i // j] + j)
+                if j != i // j:  # Check if j is a proper divisor
+                    dp[i] = min(dp[i], dp[i // j] + j)
             j += 1
 
     return dp[n]
