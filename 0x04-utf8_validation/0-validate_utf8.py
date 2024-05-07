@@ -13,6 +13,13 @@ def validUTF8(data):
     Then checks if the three most significant bits of the byte match
     the pattern 110, indicating that the byte is the start of a 2-byte
     UTF-8 character
+
+    byte >> 7 == 0b1: If the most significant bit (MSB) is set, indicating an
+    invalid UTF-8 character, return False
+
+    byte >> 6 != 0b10: If num_bytes is not 0, check if the byte is a
+    continuation byte, then Decrement num_bytes to indicate processing of a
+    continuation byte
     """
 
     num_bytes = 0
@@ -26,14 +33,10 @@ def validUTF8(data):
             elif byte >> 3 == 0b11110:
                 num_bytes = 3
             elif byte >> 7 == 0b1:
-                # If the most significant bit (MSB) is set, indicating an
-                # invalid UTF-8 character, return False
                 return False
         else:
-            # If num_bytes is not 0, check if the byte is a continuation byte
             if byte >> 6 != 0b10:
                 return False
-            # Decrement num_bytes to indicate processing of a continuation byte
             num_bytes -= 1
 
     return num_bytes == 0
