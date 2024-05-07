@@ -3,6 +3,11 @@
 
 
 def validUTF8(data):
+    """
+    Method that determines if a given data set represents
+    a valid UTF-8 encoding.
+    """
+
     # Number of bytes in the current UTF-8 character
     num_bytes = 0
 
@@ -35,5 +40,4 @@ def validUTF8(data):
             # Decrement num_bytes to indicate a continuation byte
             num_bytes -= 1
 
-    # If all characters have been validated
     return num_bytes == 0
