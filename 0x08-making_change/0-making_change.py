@@ -3,6 +3,7 @@
 Making Change: 0. Change comes from within
 """
 
+
 def makeChange(coins, total):
     """Return the minimum number of coins needed to meet a given total.
     """
@@ -20,9 +21,7 @@ def makeChange(coins, total):
             count = total // coin
             coin_count += count
             total -= count * coin
-        
         if total == 0:
             return coin_count
 
     return -1 if total > 0 else coin_count
-
