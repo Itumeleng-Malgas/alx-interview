@@ -1,40 +1,24 @@
 #!/usr/bin/python3
-""" rotate a 2d array 90 degrees """
+"""Returns the perimeter of the island described in the grid."""
 
 
-def rotate_2d_matrix(matrix):
-    """Rotates a 2D matrix 90 degrees clockwise."""
-    n = len(matrix)
-    result = [[0] * n for _ in range(n)]
+def island_perimeter(grid):
+    """Returns the perimeter of the island described in the grid."""
+    rows = len(grid)
+    cols = len(grid[0])
+    perimeter = 0
 
-    for i in range(n):
-        for j in range(n):
-            result[j][n - 1 - i] = matrix[i][j]
+    for r in range(rows):
+        for c in range(cols):
+            if grid[r][c] == 1:
+                # Check all four directions (top, bottom, left, right)
+                if r == 0 or grid[r-1][c] == 0:  # top
+                    perimeter += 1
+                if r == rows-1 or grid[r+1][c] == 0:  # bottom
+                    perimeter += 1
+                if c == 0 or grid[r][c-1] == 0:  # left
+                    perimeter += 1
+                if c == cols-1 or grid[r][c+1] == 0:  # right
+                    perimeter += 1
 
-    for i in range(n):
-        for j in range(n):
-            matrix[i][j] = result[i][j]
-
-
-def print_matrix(matrix):
-    """Prints a 2D matrix."""
-    print("[")
-    for row in matrix:
-        print("  ", row, ",")
-    print("]")
-
-
-def build_matrix(n):
-    """Builds an n x n matrix filled with sequential numbers."""
-    return [[n * i + j + 1 for j in range(n)] for i in range(n)]
-
-
-if __name__ == "__main__":
-    matrix = build_matrix(3)
-    rotate_2d_matrix(matrix)
-    print_matrix(matrix)
-    print()
-
-    matrix = build_matrix(5)
-    rotate_2d_matrix(matrix)
-    print_matrix(matrix)
+    return perimeter
